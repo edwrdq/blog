@@ -37,10 +37,10 @@ export default function Contact() {
           <h2 className="text-2xl font-semibold mb-2">Email</h2>
           <p className="text-lg">
             <a
-              href="mailto:jonatan@dotmavriq.life"
+              href="mailto:social@dotmavriq.life"
               className="underline hover:text-orange-400 transition-colors"
             >
-              JONATAN@DOTMAVRIQ.LIFE
+              SOCIAL@DOTMAVRIQ.LIFE
             </a>
           </p>
         </section>
