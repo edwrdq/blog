@@ -158,7 +158,7 @@ export default function CV() {
                   <li>
                     <strong>Academedia</strong> — Web Development, Web Content Management
                     <ul className="list-disc ml-6">
-                      <li>Developed and optimized WordPress websites for Northern Europe's largest educational company.</li>
+                      <li>Developed and optimized WordPress websites for Northern Europe&apos;s largest educational company.</li>
                       <li>Customized themes, developed plugins, and managed databases.</li>
                       <li>Collaborated with cross-functional teams for seamless integration.</li>
                       <li>Troubleshot and resolved technical issues to ensure stability and security.</li>

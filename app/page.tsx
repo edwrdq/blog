@@ -12,7 +12,7 @@ export default function Home() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let particles: {
+    const particles: {
       x: number;
       y: number;
       speed: number;
