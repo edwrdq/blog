@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,9 +18,9 @@ export default function Home() {
       size: number;
       opacity: number;
     }[] = [];
-    const maxParticles = 80; 
-    const spawnChance = 0.05; 
-    const particleColor = "100,100,100"; 
+    const maxParticles = 80;
+    const spawnChance = 0.05;
+    const particleColor = "100,100,100";
     let animationFrameId: number;
 
     const resizeCanvas = () => {
@@ -37,14 +36,14 @@ export default function Home() {
           x: Math.random() * canvas.width,
           y: canvas.height,
           speed: 0.5 + Math.random() * 0.5,
-          size: 4 + Math.random() * 4, 
-          opacity: 0.5 + Math.random() * 0.3, 
+          size: 4 + Math.random() * 4,
+          opacity: 0.5 + Math.random() * 0.3,
         });
       }
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.y -= p.speed;
-        p.opacity -= 0.0005; // decay way later
+        p.opacity -= 0.0005;
         if (p.y < 0 || p.opacity <= 0) {
           particles.splice(i, 1);
         }
@@ -83,24 +82,19 @@ export default function Home() {
         style={{ width: "100%", height: "100%", zIndex: 0 }}
       />
 
-      {/* Header / Title (optional) */}
-      <header className="mb-8">
-        {/* Insert site title or navigation if needed */}
-      </header>
+      <header className="mb-8">{/* Optional header or nav */}</header>
 
-      {/* Main content area */}
       <main className="relative z-10 flex flex-col items-center justify-center flex-grow gap-8">
-        {/* Centered GIF */}
-        <Image
+        {/* Plain <img> for the GIF */}
+        <img
           className="dark:invert"
           src="/solidsnakegbc.gif"
           alt="Solid Snake GBC"
           width={180}
           height={38}
-          priority
         />
 
-        {/* Row of social icons */}
+        {/* Social icons using plain <img> */}
         <div className="flex flex-wrap justify-center gap-6">
           <a
             href="https://github.com/dotMavriQ"
@@ -108,7 +102,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="transition hover:opacity-75"
           >
-            <Image src="/github.svg" alt="GitHub" width={40} height={40} />
+            <img src="/github.svg" alt="GitHub" width={40} height={40} />
           </a>
           <a
             href="https://www.linkedin.com/in/janssonjonatan/"
@@ -116,7 +110,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="transition hover:opacity-75"
           >
-            <Image src="/linkedin.svg" alt="LinkedIn" width={40} height={40} />
+            <img src="/linkedin.svg" alt="LinkedIn" width={40} height={40} />
           </a>
           <a
             href="https://www.youtube.com/@dotmavriq/videos"
@@ -124,7 +118,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="transition hover:opacity-75"
           >
-            <Image src="/youtube.svg" alt="YouTube" width={40} height={40} />
+            <img src="/youtube.svg" alt="YouTube" width={40} height={40} />
           </a>
           <a
             href="https://matrix.to/#/@dotmavriq:chat.dotmavriq.life"
@@ -132,7 +126,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="transition hover:opacity-75"
           >
-            <Image src="/matrix.svg" alt="Matrix" width={40} height={40} />
+            <img src="/matrix.svg" alt="Matrix" width={40} height={40} />
           </a>
         </div>
 
@@ -165,45 +159,27 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* Footer links also plain <img> */}
       <footer className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-6">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/about"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
+          <img aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
           About Me
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/cv"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
+          <img aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
           My CV
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/contact"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
+          <img aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
           Contact
         </a>
       </footer>
