@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import Particles from "../components/Particles";
 
 export default function Contact() {
   return (
