@@ -54,7 +54,6 @@ export default function Home() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const p of particles) {
         ctx.fillStyle = `rgba(${particleColor}, ${p.opacity.toFixed(2)})`;
-        // Draw square particle
         ctx.fillRect(p.x, p.y, p.size, p.size);
       }
     };
@@ -74,18 +73,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative flex flex-col min-h-screen p-4 sm:p-8 md:p-16 bg-background text-foreground font-[family-name:var(--font-geist-sans)]">
-      {/* Inline particle canvas */}
+    <div className="relative flex flex-col h-full p-4 sm:p-8 md:p-16 bg-background text-foreground [font-family:var(--font-geist-sans)]">
+      {/* Inline particle canvas as a fixed background */}
       <canvas
         ref={canvasRef}
         className="fixed top-0 left-0 pointer-events-none"
         style={{ width: "100%", height: "100%", zIndex: 0 }}
       />
 
-      <header className="mb-8">{/* Optional header or nav */}</header>
-
-      <main className="relative z-10 flex flex-col items-center justify-center flex-grow gap-8">
-        {/* Plain <img> for the GIF */}
+      {/* Main content area */}
+      <div className="relative z-10 flex flex-col flex-grow items-center justify-center gap-8">
+        {/* The GIF */}
         <img
           className="dark:invert"
           src="/solidsnakegbc.gif"
@@ -94,7 +92,7 @@ export default function Home() {
           height={38}
         />
 
-        {/* Social icons using plain <img> */}
+        {/* Social Icons */}
         <div className="flex flex-wrap justify-center gap-6">
           <a
             href="https://github.com/dotMavriQ"
@@ -130,7 +128,7 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Call-to-action buttons */}
+        {/* Call-to-Action Buttons */}
         <div className="flex flex-wrap justify-center gap-4">
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
@@ -157,32 +155,32 @@ export default function Home() {
             Read Blog
           </a>
         </div>
-      </main>
 
-      {/* Footer links also plain <img> */}
-      <footer className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-6">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="/about"
-        >
-          <img aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-          About Me
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="/cv"
-        >
-          <img aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-          My CV
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="/contact"
-        >
-          <img aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-          Contact
-        </a>
-      </footer>
+        {/* Quick Links (first "footer") */}
+        <div className="relative z-10 mt-4 flex flex-wrap items-center justify-center gap-6">
+          <a
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="/about"
+          >
+            <img aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
+            About Me
+          </a>
+          <a
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="/cv"
+          >
+            <img aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
+            My CV
+          </a>
+          <a
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="/contact"
+          >
+            <img aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
+            Contact
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
