@@ -11,18 +11,7 @@ export default function Home() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const particles: {
-      x: number;
-      y: number;
-      speed: number;
-      size: number;
-      opacity: number;
-    }[] = [];
-    const maxParticles = 80;
-    const spawnChance = 0.05;
-    const particleColor = "100,100,100";
-    let animationFrameId: number;
-
+    // Resize canvas to fill the viewport
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -30,51 +19,92 @@ export default function Home() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    const updateParticles = () => {
-      if (particles.length < maxParticles && Math.random() < spawnChance) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: canvas.height,
-          speed: 0.5 + Math.random() * 0.5,
-          size: 4 + Math.random() * 4,
-          opacity: 0.5 + Math.random() * 0.3,
-        });
-      }
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.y -= p.speed;
-        p.opacity -= 0.0005;
-        if (p.y < 0 || p.opacity <= 0) {
-          particles.splice(i, 1);
-        }
-      }
-    };
+    // ROAD EFFECT PARAMETERS (adjust these values as needed)
+    const roadSpeed = 2; // Speed of the road movement (increase for faster effect)
+    const segmentSpacing = 150; // Vertical spacing between checkered segments
+    const roadWidthAtVP = 20; // Road width at the vanishing point (in pixels)
+    const leftMargin = 0.2; // Left road edge at 20% of canvas width
+    const rightMargin = 0.8; // Right road edge at 80% of canvas width
 
-    const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const p of particles) {
-        ctx.fillStyle = `rgba(${particleColor}, ${p.opacity.toFixed(2)})`;
-        ctx.fillRect(p.x, p.y, p.size, p.size);
-      }
-    };
+    // Create an array to hold vertical positions of checkered mid-line segments.
+    // Each number represents the vertical offset from the bottom.
+    const segments: number[] = [];
+    for (let pos = 0; pos < canvas.height; pos += segmentSpacing) {
+      segments.push(pos);
+    }
 
+    // The animation loop to draw the road perspective
     const animate = () => {
-      updateParticles();
-      drawParticles();
-      animationFrameId = requestAnimationFrame(animate);
+      // Clear canvas each frame
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Define key positions for perspective:
+      // Vanishing point (vp) is set at 40% of canvas height (adjust vp.y as desired)
+      const vp = { x: canvas.width / 2, y: canvas.height * 0.4 };
+      // Bottom left (bl) and bottom right (br) define where the road starts at the bottom
+      const bl = { x: canvas.width * leftMargin, y: canvas.height };
+      const br = { x: canvas.width * rightMargin, y: canvas.height };
+
+      // Draw road edges (the lines converging toward the vanishing point)
+      ctx.strokeStyle = "#555"; // Road edge color (grunge style)
+      ctx.lineWidth = 3;
+
+      // Left road edge: from bottom left to a point near the vanishing point
+      ctx.beginPath();
+      ctx.moveTo(bl.x, bl.y);
+      ctx.lineTo(vp.x - roadWidthAtVP / 2, vp.y);
+      ctx.stroke();
+
+      // Right road edge: from bottom right to a point near the vanishing point
+      ctx.beginPath();
+      ctx.moveTo(br.x, br.y);
+      ctx.lineTo(vp.x + roadWidthAtVP / 2, vp.y);
+      ctx.stroke();
+
+      // Draw the moving checkered mid-line segments along the center of the road.
+      // REVERSED MOTION: Now segments move downward, simulating the GIF running TOWARDS the viewer.
+      for (let i = 0; i < segments.length; i++) {
+        // Update the segment's vertical position downward along the road.
+        segments[i] += roadSpeed;
+        if (segments[i] > canvas.height) {
+          // When a segment moves past the bottom, wrap it to the top.
+          segments[i] -= canvas.height;
+        }
+
+        // Calculate an interpolation factor "t" from bottom (t=0) to vanishing point (t=1)
+        const t = segments[i] / canvas.height;
+        // Interpolate the segment's position along the center line:
+        // At t=0, position is at bottom center; at t=1, it's at the vanishing point.
+        const xPos = (1 - t) * (canvas.width / 2) + t * vp.x;
+        const yPos = (1 - t) * canvas.height + t * vp.y;
+
+        // Adjust segment size for perspective (smaller near the vanishing point)
+        const segmentWidth = 20 * (1 - t) + 5;
+        const segmentHeight = 10 * (1 - t) + 2;
+
+        // Alternate colors for a checkered effect (updated colors)
+        ctx.fillStyle = i % 2 === 0 ? "#ebbdb2" : "#665c53";
+        // Draw the segment as a rectangle centered at (xPos, yPos)
+        ctx.fillRect(xPos - segmentWidth / 2, yPos - segmentHeight / 2, segmentWidth, segmentHeight);
+      }
+
+      // Optional: Add a subtle grunge overlay for texture (adjust alpha as needed)
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
   return (
     <div className="relative flex flex-col h-full p-4 sm:p-8 md:p-16 bg-background text-foreground [font-family:var(--font-geist-sans)]">
-      {/* Inline particle canvas as a fixed background */}
+      {/* Fixed canvas background with the road effect */}
       <canvas
         ref={canvasRef}
         className="fixed top-0 left-0 pointer-events-none"
@@ -83,7 +113,7 @@ export default function Home() {
 
       {/* Main content area */}
       <div className="relative z-10 flex flex-col flex-grow items-center justify-center gap-8">
-        {/* The GIF */}
+        {/* The centered ninja (or Solid Snake) GIF */}
         <img
           className="dark:invert"
           src="/solidsnakegbc.gif"
@@ -111,7 +141,7 @@ export default function Home() {
             <img src="/linkedin.svg" alt="LinkedIn" width={40} height={40} />
           </a>
           <a
-            href="https://www.youtube.com/@dotmavriq/videos"
+            href="https://www.youtube.com/@dotMavriq/videos"
             target="_blank"
             rel="noopener noreferrer"
             className="transition hover:opacity-75"
