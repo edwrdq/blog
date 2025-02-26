@@ -144,9 +144,6 @@ export default function Contact() {
               </div>
             </section>
           </main>
-          <footer className="text-center text-sm">
-            <p>🄯 {new Date().getFullYear()} dotMavriQ. All base are belong to us.</p>
-          </footer>
         </div>
       </div>
     </div>
