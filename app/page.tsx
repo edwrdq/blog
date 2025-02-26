@@ -46,7 +46,7 @@ export default function Home() {
       const br = { x: canvas.width * rightMargin, y: canvas.height };
 
       // Draw road edges (the lines converging toward the vanishing point)
-      ctx.strokeStyle = "#555"; // Road edge color (grunge style)
+      ctx.strokeStyle = "#665c53"; // Road edge color (grunge style)
       ctx.lineWidth = 3;
 
       // Left road edge: from bottom left to a point near the vanishing point
