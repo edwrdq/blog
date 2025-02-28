@@ -29,7 +29,7 @@ const schemaJson = {
       "@id": "https://blog.dotmavriq.life/#website",
       "url": "https://blog.dotmavriq.life/",
       "name": "blog.dotMavriQ",
-      "description": "Welcome to my digital playground! I'm Jonatan Jansson, aka dotMavriQ – a passionate Full Stack Developer and Open Source Aficionado. Here, I share my personal coding adventures, practical insights, and creative solutions that bring modern web experiences to life.",
+      "description": "Personal blog of Jonatan Jansson (dotMavriQ) - a problem-solving developer with a passion for Linux, full-stack development, and creating user-centered solutions.",
       "publisher": {
         "@type": "Organization",
         "name": "dotMavriQ",
@@ -49,7 +49,7 @@ const schemaJson = {
       "@id": "https://blog.dotmavriq.life/#blog",
       "url": "https://blog.dotmavriq.life/blog",
       "name": "Blog",
-      "description": "Welcome to my digital playground! I'm Jonatan Jansson, aka dotMavriQ – a passionate Full Stack Developer and Open Source Aficionado. Here, I share my personal coding adventures, practical insights, and creative solutions that bring modern web experiences to life.",
+      "description": "Personal blog of Jonatan Jansson (dotMavriQ) - a problem-solving developer with a passion for Linux, full-stack development, and creating user-centered solutions.",
       "publisher": {
         "@type": "Organization",
         "name": "dotMavriQ"
@@ -61,7 +61,7 @@ const schemaJson = {
 export const metadata: Metadata = {
   title: "blog.dotMavriQ",
   description:
-    "A state-of-the-art DevBlog built with Next.js, Tailwind, and Gruvbox Dark aesthetics.",
+    "Personal blog of Jonatan Jansson (dotMavriQ) - a problem-solving developer with a passion for Linux, full-stack development, and creating user-centered solutions.",
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },
