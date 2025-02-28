@@ -106,7 +106,13 @@ export default function RootLayout({
         <footer className="p-4 bg-[#282828] bg-opacity-90 backdrop-blur-md shadow-inner border-t border-[#665c53] text-center">
           <div className="max-w-6xl mx-auto">
             <p className="text-sm text-[#ebdbb2]">
-              🄯 {new Date().getFullYear()} dotMavriQ. All base are belong to us.
+              🄯 {new Date().getFullYear()} dotMavriQ. <a 
+                href="https://archive.org/details/flash_allyourbase" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-underline text-[#ebdbb2] hover:text-[#ebdbb2] cursor-default"
+                title="All your base are belong to us"
+              >All base are belong to us.</a>
             </p>
           </div>
         </footer>
