@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { format } from "date-fns";
 import { getSortedPostsData, getPostData } from "../lib/posts";
 
@@ -17,26 +16,6 @@ export default async function Blog() {
     <div className="flex flex-col items-start min-h-screen p-8 bg-background text-foreground max-w-5xl mx-auto">
       {/* Header */}
       <header className="w-full text-center mb-12">
-        <Link
-          href="/"
-          className="inline-block rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 mb-6"
-        >
-          <svg
-            className="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
-          </svg>
-          <span>Back to Home</span>
-        </Link>
         <h1 className="text-5xl font-bold mb-4">Blog</h1>
         <div className="h-1 w-20 bg-foreground mx-auto"></div>
       </header>

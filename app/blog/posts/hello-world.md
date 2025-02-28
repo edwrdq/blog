@@ -1,60 +1,27 @@
 ---
-title: "Hello World: Welcome to My Developer Blog"
+title: "A Decade in Web Dev, AI, and Falling Back in Love with PHP"
 date: "2025-02-28"
-tags: ["introduction", "web development", "coding"]
-excerpt: "Welcome to my developer blog where I share my thoughts on programming, tech, and my journey as a developer."
+tags: ["Web Development", "Coding", "WordPress", "TypeScript", "PHP", "Laravel"]
+excerpt: "Reflecting on a decade in web development, the state of AI-assisted coding, and rediscovering the joy of PHP and Laravel."
 ---
 
-# Hello World!
+### Wow… so it’s 2025
 
-Welcome to my developer blog! This is the first post of many where I'll be sharing my thoughts, experiences, and insights on programming, technology, and my journey as a developer.
+Web development feels like it’s moving at light speed, and yet, somehow, we’re still dealing with the same problems we had ten years ago. 
 
-## Why I Started This Blog
+I’ve been at this for *a decade now*, mostly working with WordPress, and despite all the noise about Jamstack, headless CMSs, and the latest JavaScript frameworks, WordPress is still running a massive chunk of the internet. Market dominance aside, things at Automattic have been messy.
 
-There are a few reasons why I decided to start this blog:
+Mullenweg has been going off the rails, and yet, here I am, still writing custom themes, tweaking Gutenberg blocks, ACF, and making WP behave the way I want it to.
 
-1. **Knowledge Sharing**: I've learned so much from other developers' blogs and resources. Now I want to give back to the community.
-2. **Learning Through Teaching**: Explaining concepts helps solidify my understanding.
-3. **Building My Digital Garden**: This blog will serve as a place for me to document my learning journey and projects.
+That said, I’ve been pushing myself beyond WordPress. I started really focusing on TypeScript in 2022, and after resisting it for years, I finally *get* why people love it. 
 
-## What to Expect
+It’s cleaner, more predictable, and actually helps prevent dumb mistakes. Laravel has also pulled me back into PHP, and honestly? It’s been fun. PHP has always had a bad reputation, but Laravel makes it feel modern and structured in a way I wish JavaScript frameworks did. Why isn’t there a Laravel for JS with real industry traction?
 
-I plan to cover a variety of topics, including but not limited to:
+I’ve also put a ton of time into a productivity plugin, something that fits the way *I* work. If I polish it enough, I might release it, but for now, it’s been a great way to push my skills.
 
-- Web development (React, Next.js, etc.)
-- Programming tips and tricks
-- Project showcases
-- Thoughts on tech trends
-- Personal development as a programmer
+Recently, I’ve been diving deep into an Advanced Google Tag Manager course on Udemy, which has been eye-opening in ways I didn’t expect. Also, after years of putting it off, I *might* finally finish Harvard’s CS50. Ever since I first heard about it way back when, I’ve wanted to complete it, and it feels like the right time to finally make that happen.
 
-## Code Example
+So yeah, that’s where I’m at. AI is changing how we write code, but fundamentals still matter. Web dev is weird and chaotic, but if you actually take the time to *learn*, you’ll be fine. More posts coming soon. Or not. We’ll see.
 
-Here's a simple "Hello World" in JavaScript:
-
-```javascript
-function helloWorld() {
-  console.log("Hello, World!");
-}
-
-helloWorld();
-```
-
-And here's how you might do it in React:
-
-```jsx
-function HelloWorld() {
-  return <div>Hello, World!</div>;
-}
-
-export default HelloWorld;
-```
-
-## Next Steps
-
-I'm excited to embark on this blogging journey, and I hope you'll find the content helpful and interesting. Feel free to reach out with any questions or suggestions for topics you'd like me to cover.
-
-Stay tuned for more posts coming soon!
-
----
-
-Until next time, happy coding!
+Anyways welcome to my blog! 
+I hope to hear from anyone willing to take the time to read my ramblings and observations.
