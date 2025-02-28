@@ -1,5 +1,5 @@
 ---
-title: "A Decade in Web Dev, AI, and Falling Back in Love with PHP"
+title: "Hello World!"
 date: "2025-02-28"
 tags: ["Web Development", "Coding", "WordPress", "TypeScript", "PHP", "Laravel"]
 excerpt: "Reflecting on a decade in web development, the state of AI-assisted coding, and rediscovering the joy of PHP and Laravel."

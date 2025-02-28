@@ -12,11 +12,11 @@ export default function About() {
           src="/sepiaface.png"
           alt=""
           fill
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "contain", objectPosition: "left bottom" }}
         />
       </div>
 
-      <main className="relative z-10 max-w-3xl mx-auto font-sans">
+      <main className="relative z-10 max-w-3xl mx-auto font-sans pb-64 sm:pb-0">
         <h1 className="text-4xl font-bold mb-4">About Me</h1>
         <p className="mb-4 text-lg leading-relaxed">
           Hi, my name is Jonatan—though many online know me as dotMavriQ. My journey into technology began in the mid-1990s when my father brought home a computer, opening up an entirely new world for me. I still remember those early days with Windows 95—exploring games, experimenting with software, and becoming captivated by the emerging Internet.
