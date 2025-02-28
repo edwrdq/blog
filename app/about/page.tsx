@@ -40,7 +40,7 @@ export default function About() {
       </div>
 
       <main 
-        className="relative z-10 max-w-3xl mx-auto font-sans px-1 sm:px-4 pb-64 sm:pb-40 md:pb-0"
+        className="relative z-10 max-w-3xl mx-auto font-sans px-1 sm:px-4 pb-80 sm:pb-60 md:pb-0"
         role="main"
         aria-labelledby="about-heading"
       >
