@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div className="min-h-screen p-8" style={{ backgroundColor: "#282828", color: "#ebdbb2" }}>
+    <div className="min-h-screen p-4 sm:p-8" style={{ backgroundColor: "#282828", color: "#ebdbb2" }}>
       <div 
-        className="relative min-h-screen p-8 rounded-lg shadow-lg mx-auto max-w-5xl" 
+        className="relative min-h-screen p-4 sm:p-8 rounded-lg shadow-lg mx-auto max-w-5xl sm:w-[95%] w-full" 
         style={{ backgroundColor: "#fbf1c7", color: "#3c3836" }}
         role="main"
         aria-label="About Me Page"
@@ -40,7 +40,7 @@ export default function About() {
       </div>
 
       <main 
-        className="relative z-10 max-w-3xl mx-auto font-sans pb-64 sm:pb-40 md:pb-0"
+        className="relative z-10 max-w-3xl mx-auto font-sans px-1 sm:px-4 pb-64 sm:pb-40 md:pb-0"
         role="main"
         aria-labelledby="about-heading"
       >

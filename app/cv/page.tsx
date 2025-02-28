@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function CV() {
   return (
-    <div className="min-h-screen p-8" style={{ backgroundColor: "#282828", color: "#ebdbb2" }}>
+    <div className="min-h-screen p-4 sm:p-8" style={{ backgroundColor: "#282828", color: "#ebdbb2" }}>
       <a 
         href="#cv-heading" 
         className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-[#fbf1c7] focus:text-[#3c3836] focus:rounded-lg"
@@ -17,7 +17,7 @@ export default function CV() {
       </a>
 
       <div 
-        className="relative min-h-screen p-8 rounded-lg shadow-lg mx-auto max-w-5xl" 
+        className="relative min-h-screen p-4 sm:p-8 rounded-lg shadow-lg mx-auto max-w-5xl sm:w-[95%] w-full" 
         style={{ backgroundColor: "#fbf1c7", color: "#3c3836" }}
         role="main"
         aria-label="Curriculum Vitae"
@@ -79,7 +79,7 @@ export default function CV() {
           </a>
         </header>
 
-        <main className="max-w-4xl mx-auto relative z-20" aria-labelledby="cv-heading">
+        <main className="max-w-4xl mx-auto relative z-20 px-1 sm:px-4" aria-labelledby="cv-heading">
           {/* Extra padding to prevent text from overlapping the image */}
           <div className="pb-40 md:pb-72 lg:pb-64">
           {/* SKILLS */}
