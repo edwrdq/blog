@@ -26,7 +26,7 @@ export default function About() {
     
       {/* Background image positioned in the bottom left with transparency */}
       <div 
-        className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 opacity-20 pointer-events-none"
+        className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 opacity-20 pointer-events-none z-10"
         aria-hidden="true"
       >
         <Image
@@ -40,7 +40,7 @@ export default function About() {
       </div>
 
       <main 
-        className="relative z-10 max-w-3xl mx-auto font-sans px-1 sm:px-4 pb-80 sm:pb-60 md:pb-0"
+        className="relative z-10 max-w-3xl mx-auto font-sans px-1 sm:px-4 pb-80 sm:pb-60 md:pb-80 lg:pb-64"
         role="main"
         aria-labelledby="about-heading"
       >
