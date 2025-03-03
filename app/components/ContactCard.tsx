@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
@@ -10,42 +10,7 @@ const QRCodePopup = dynamic(() => import("./QRCodePopup"), { ssr: false });
 export default function ContactCard() {
   const [isQROpen, setIsQROpen] = useState(false);
   
-  // Shake detection setup
-  useEffect(() => {
-    let shakeEvent: any = null;
-    
-    // Only run on client and if DeviceMotionEvent is available
-    if (typeof window !== 'undefined' && 'DeviceMotionEvent' in window) {
-      try {
-        // Try to import shake.js dynamically
-        import('shake.js').then((shake) => {
-          const Shake = shake.default;
-          shakeEvent = new Shake({
-            threshold: 15, // default 15
-            timeout: 1000 // default 1000
-          });
-          
-          shakeEvent.start();
-          window.addEventListener('shake', handleShake, false);
-        }).catch(err => {
-          console.log('Shake detection not available:', err);
-        });
-      } catch (e) {
-        console.log('Error initializing shake detection');
-      }
-    }
-    
-    return () => {
-      if (shakeEvent) {
-        window.removeEventListener('shake', handleShake, false);
-        shakeEvent.stop();
-      }
-    };
-  }, []);
-  
-  const handleShake = () => {
-    setIsQROpen(true);
-  };
+  // No shake detection here - now handled globally at the layout level
   
   return (
     <div className="relative max-w-3xl w-full">
@@ -95,7 +60,7 @@ export default function ContactCard() {
         
         <header>
           <h1 className="text-4xl font-bold text-center">Contact</h1>
-          <p className="text-center text-sm text-[#a89984] mt-1">Click the folded corner to scan QR code or shake your device</p>
+          <p className="text-center text-sm text-[#a89984] mt-1">Click the folded corner to share this site</p>
         </header>
         <main className="space-y-6">
           <section>

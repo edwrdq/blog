@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Navbar";
+import ClientShakeWrapper from "./components/ClientShakeWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -94,6 +95,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${firaCode.variable} flex flex-col h-screen antialiased bg-background text-foreground`}
       >
+        {/* Global shake detection works on all pages */}
+        <ClientShakeWrapper />
+        
         <header className="sticky top-0 z-50 p-4 bg-[#282828] bg-opacity-90 backdrop-blur-md shadow-lg border-b border-[#665c53]">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <h1 className="text-3xl font-bold text-[#ebdbb2]">
