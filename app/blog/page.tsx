@@ -1,23 +1,91 @@
-import { format } from "date-fns";
-import { getSortedPostsData, getPostData } from "../lib/posts";
-import { Metadata } from "next";
+'use client';
 
-// Set metadata for the blog page
-export const metadata: Metadata = {
-  title: "Blog | dotMavriQ",
-  description: "Thoughts, insights, and tutorials on web development, programming, and tech.",
-};
+import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { getSortedPostsData } from "../lib/posts";
+import BlogPostPreview from '../components/BlogPostPreview';
+import TagSelector from '../components/TagSelector';
 
-export default async function Blog() {
-  const allPostsData = getSortedPostsData();
+export default function Blog() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const tagFromUrl = searchParams.get('tag');
   
-  // Since we're statically generating, we can preload all blog posts
-  const allPostsWithContent = await Promise.all(
-    allPostsData.map(async (postData) => {
-      const fullPost = await getPostData(postData.id);
-      return fullPost;
-    })
-  );
+  const [posts, setPosts] = useState(getSortedPostsData());
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>(tagFromUrl ? [tagFromUrl] : []);
+  const [dateFilter, setDateFilter] = useState<string>('');
+  
+  // Get all unique tags from posts
+  const allTags = Array.from(
+    new Set(posts.flatMap(post => post.tags))
+  ).sort();
+  
+  // Function to handle tag click
+  const handleTagClick = useCallback((tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+      ? prev.filter(t => t !== tag) 
+      : [...prev, tag]
+    );
+  }, []);
+  
+  // Filter posts whenever filters change
+  useEffect(() => {
+    let filtered = posts;
+    
+    // Filter by search term
+    if (searchTerm) {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter(post => 
+        post.title.toLowerCase().includes(searchLower) ||
+        post.excerpt.toLowerCase().includes(searchLower)
+      );
+    }
+    
+    // Filter by selected tags
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter(post => 
+        selectedTags.every(tag => post.tags.includes(tag))
+      );
+    }
+    
+    // Filter by date
+    if (dateFilter) {
+      const year = dateFilter.split('-')[0];
+      const month = dateFilter.split('-')[1];
+      
+      filtered = filtered.filter(post => {
+        const postDate = new Date(post.date);
+        return (
+          postDate.getFullYear().toString() === year &&
+          (postDate.getMonth() + 1).toString().padStart(2, '0') === month
+        );
+      });
+    }
+    
+    setFilteredPosts(filtered);
+  }, [searchTerm, selectedTags, dateFilter, posts]);
+  
+  // Reset all filters
+  const clearFilters = useCallback(() => {
+    setSearchTerm('');
+    setSelectedTags([]);
+    setDateFilter('');
+    
+    // Clear URL parameters
+    router.push('/blog');
+  }, [router]);
+  
+  // Calculate date range for the date filter
+  const dateRange = (() => {
+    const dates = posts.map(post => {
+      const date = new Date(post.date);
+      return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}`;
+    });
+    return Array.from(new Set(dates)).sort().reverse();
+  })();
   
   return (
     <div className="flex flex-col min-h-screen p-6 md:p-8 bg-[#282828] text-[#ebdbb2]">
@@ -29,90 +97,90 @@ export default async function Blog() {
         </p>
         <div className="h-1 w-20 bg-[#d3869b] mx-auto mt-6"></div>
       </header>
+      
+      {/* Filters Section */}
+      <section className="w-full max-w-4xl mx-auto mb-8 bg-[#32302f] p-6 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold mb-4 text-[#fabd2f]">Filter Posts</h2>
+        
+        {/* Search */}
+        <div className="mb-6">
+          <label htmlFor="search" className="block text-[#d5c4a1] mb-2">Search</label>
+          <input
+            type="text"
+            id="search"
+            placeholder="Search by title or content..."
+            className="w-full p-3 bg-[#3c3836] border border-[#504945] rounded-md text-[#ebdbb2] focus:outline-none focus:ring-2 focus:ring-[#fabd2f] focus:border-transparent"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+        {/* Date Filter */}
+        <div className="mb-6">
+          <label htmlFor="date-filter" className="block text-[#d5c4a1] mb-2">Filter by Month</label>
+          <select
+            id="date-filter"
+            className="w-full p-3 bg-[#3c3836] border border-[#504945] rounded-md text-[#ebdbb2] focus:outline-none focus:ring-2 focus:ring-[#fabd2f] focus:border-transparent"
+            value={dateFilter}
+            onChange={(e) => setDateFilter(e.target.value)}
+          >
+            <option value="">All Dates</option>
+            {dateRange.map(date => {
+              const [year, month] = date.split('-');
+              const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+              const monthName = monthNames[parseInt(month) - 1];
+              return (
+                <option key={date} value={date}>
+                  {monthName} {year}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        
+        {/* Tags Filter */}
+        <TagSelector 
+          tags={allTags}
+          selectedTags={selectedTags}
+          onTagClick={handleTagClick}
+        />
+        
+        {/* Clear Filters Button */}
+        {(searchTerm || selectedTags.length > 0 || dateFilter) && (
+          <button
+            onClick={clearFilters}
+            className="mt-4 px-4 py-2 bg-[#fb4934] text-[#282828] rounded-md hover:bg-[#cc241d] transition-colors"
+          >
+            Clear Filters
+          </button>
+        )}
+      </section>
 
       {/* Blog Posts */}
       <main className="w-full max-w-4xl mx-auto" aria-label="Blog posts">
-        {allPostsData.length > 0 ? (
-          <div className="space-y-12">
-            {allPostsData.map(({ id, date, title, tags, excerpt }) => {
-              const postContent = allPostsWithContent.find(post => post.id === id);
-              
-              return (
-                <article 
-                  key={id}
-                  id={id}
-                  className="bg-[#32302f] p-6 md:p-8 rounded-lg shadow-lg border border-[#504945]"
-                >
-                  <header className="mb-6">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-2 text-[#fabd2f]">
-                      {title}
-                    </h2>
-                    
-                    <time 
-                      dateTime={new Date(date).toISOString()}
-                      className="text-sm text-[#a89984] block mb-3"
-                    >
-                      {format(new Date(date), 'MMMM d, yyyy')}
-                    </time>
-                    
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {tags.map((tag) => (
-                        <span 
-                          key={tag} 
-                          className="px-3 py-1 bg-[#504945] text-[#fbf1c7] rounded-full text-xs"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <p className="text-lg text-[#d5c4a1] italic border-l-4 border-[#504945] pl-4 py-2">
-                      {excerpt}
-                    </p>
-                  </header>
-                  
-                  {/* Blog post content */}
-                  <div 
-                    className="prose prose-lg max-w-none
-                    prose-headings:text-[#fabd2f] 
-                    prose-h1:text-3xl prose-h1:font-bold 
-                    prose-h2:text-2xl prose-h2:font-semibold 
-                    prose-h3:text-xl prose-h3:font-semibold
-                    prose-p:text-[#ebdbb2] prose-p:leading-relaxed
-                    prose-a:text-[#83a598] prose-a:no-underline hover:prose-a:underline
-                    prose-strong:text-[#fe8019] prose-strong:font-bold
-                    prose-em:text-[#b8bb26] prose-em:italic
-                    prose-code:text-[#fb4934] prose-code:bg-[#3c3836] prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                    prose-pre:bg-[#3c3836] prose-pre:text-[#ebdbb2] prose-pre:p-4 prose-pre:rounded-lg
-                    prose-blockquote:border-l-4 prose-blockquote:border-[#b16286] prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-[#d3869b]
-                    prose-ul:text-[#ebdbb2] prose-ol:text-[#ebdbb2]
-                    prose-li:my-1"
-                    dangerouslySetInnerHTML={{ __html: postContent?.contentHtml || '' }}
-                  />
-                </article>
-              );
-            })}
+        {filteredPosts.length > 0 ? (
+          <div className="space-y-8">
+            <p className="text-[#a89984]">
+              Showing {filteredPosts.length} of {posts.length} posts
+            </p>
+            <div className="space-y-12">
+              {filteredPosts.map(post => (
+                <BlogPostPreview key={post.id} post={post} />
+              ))}
+            </div>
           </div>
         ) : (
           <div className="text-center py-12 bg-[#32302f] rounded-lg shadow-lg border border-[#504945]">
-            <h2 className="text-2xl font-semibold mb-4 text-[#fabd2f]">No posts yet</h2>
-            <p className="text-[#a89984] mb-8 max-w-md mx-auto">
-              Check back soon for new content! I&apos;m working on some exciting posts to share with you.
+            <h2 className="text-2xl font-semibold mb-4 text-[#fabd2f]">No posts found</h2>
+            <p className="text-[#a89984] mb-4 max-w-md mx-auto">
+              No posts match your current filters. Try adjusting your search criteria.
             </p>
-            <div className="w-full max-w-xl mx-auto">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/hB7CDrVnNCs?si=p_iJhBXDjjNPI-t3"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="w-full aspect-video rounded-lg shadow-lg"
-                loading="lazy"
-              ></iframe>
-            </div>
+            <button
+              onClick={clearFilters}
+              className="px-4 py-2 bg-[#fabd2f] text-[#282828] rounded-md hover:bg-[#d79921] transition-colors"
+            >
+              Clear Filters
+            </button>
           </div>
         )}
       </main>
