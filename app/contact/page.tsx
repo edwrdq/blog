@@ -1,5 +1,5 @@
 import LazyAnimation from "../components/LazyAnimation";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import ContactCard from "../components/ContactCard";
 
 export default function Contact() {
