@@ -4,7 +4,7 @@ const nextConfig = {
   // For GitHub Pages deployment, set the basePath to match your repo name
   // If your site is at https://username.github.io/repo-name/
   // Only set basePath for actual deployment, not for preview
-  basePath: process.env.NODE_ENV === 'production' && !process.env.TYPESCRIPT_CHECK ? "/blog.dotmavriq" : "",
+  
 
   images: {
     unoptimized: true,

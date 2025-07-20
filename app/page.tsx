@@ -5,11 +5,12 @@ import { Project } from './components/types';
 
 export default function HomePage() {
   const phrases = [
-    'a Full-Stack Developer',
-    'a UI/UX Enthusiast', 
+    'a Cybersecurity Enthusiast',
+    'an Amateur Graphic Designer',
+    'a Baker', 
     'a Problem Solver',
     'a Creative Thinker',
-    'building the future'
+    'building the future.'
   ];
 
   // Example projects - replace with your actual projects
