@@ -2,42 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Gruvbox Dark Color Palette */
+    --gruvbox-bg0: #282828;
+    --gruvbox-bg1: #3c3836;
+    --gruvbox-bg2: #504945;
+    --gruvbox-bg3: #665c54;
+    --gruvbox-bg4: #7c6f64;
+    
+    --gruvbox-fg0: #fbf1c7;
+    --gruvbox-fg1: #ebdbb2;
+    --gruvbox-fg2: #d5c4a1;
+    --gruvbox-fg3: #bdae93;
+    --gruvbox-fg4: #a89984;
+    
+    --gruvbox-red: #fb4934;
+    --gruvbox-green: #b8bb26;
+    --gruvbox-yellow: #fabd2f;
+    --gruvbox-blue: #83a598;
+    --gruvbox-purple: #d3869b;
+    --gruvbox-aqua: #8ec07c;
+    --gruvbox-orange: #fe8019;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--gruvbox-bg0);
+    color: var(--gruvbox-fg1);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-fira-code), monospace;
-}
-
-/* Hide scrollbar for Chrome, Safari, and Opera */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  display: none;
+  width: 8px;
 }
 
-/* Hide scrollbar for IE, Edge, and Firefox */
-html, body, div, pre, code, textarea {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+::-webkit-scrollbar-track {
+  background: var(--gruvbox-bg1);
 }
 
-/* Hide scrollbar globally for all elements in Chrome */
-* {
-  scrollbar-width: none;
+::-webkit-scrollbar-thumb {
+  background: var(--gruvbox-bg3);
+  border-radius: 4px;
 }
 
-/* Ensure overflow behavior still works */
-html, body {
-  overflow-y: auto;
-  overscroll-behavior-y: none;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gruvbox-bg4);
 }

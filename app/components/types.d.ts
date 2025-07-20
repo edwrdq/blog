@@ -13,3 +13,13 @@ declare module 'shake.js' {
 
   export default Shake;
 }
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  status: 'Live' | 'In Development' | 'Archived';
+  featured: boolean;
+}
