@@ -1,27 +1,21 @@
 ---
-title: "Hello World!"
-date: "2025-02-28"
-tags: ["Web Development", "Coding", "WordPress", "TypeScript", "PHP", "Laravel"]
-excerpt: "Reflecting on a decade in web development, the state of AI-assisted coding, and rediscovering the joy of PHP and Laravel."
+title: "My First Test Post"
+date: "2025-07-23"
+tags: ["testing", "sample-post"]
+excerpt: "This is a short excerpt for my first test blog post."
 ---
 
-### Wow… so it’s 2025
+## Welcome to My Blog
 
-Web development feels like it’s moving at light speed, and yet, somehow, we’re still dealing with the same problems we had ten years ago. 
+This is the first real post on my new blog! I'm excited to start sharing my thoughts and experiences with you.
 
-I’ve been at this for *a decade now*, mostly working with WordPress, and despite all the noise about Jamstack, headless CMSs, and the latest JavaScript frameworks, WordPress is still running a massive chunk of the internet. Market dominance aside, things at Automattic have been messy.
+### What to Expect
 
-Mullenweg has been going off the rails, and yet, here I am, still writing custom themes, tweaking Gutenberg blocks, ACF, and making WP behave the way I want it to.
+I plan to write about a variety of topics, including:
 
-That said, I’ve been pushing myself beyond WordPress. I started really focusing on TypeScript in 2022, and after resisting it for years, I finally *get* why people love it. 
+*   Web Development
+*   Software Engineering
+*   Cybersecurity
+*   And maybe some personal ramblings!
 
-It’s cleaner, more predictable, and actually helps prevent dumb mistakes. Laravel has also pulled me back into PHP, and honestly? It’s been fun. PHP has always had a bad reputation, but Laravel makes it feel modern and structured in a way I wish JavaScript frameworks did. Why isn’t there a Laravel for JS with real industry traction?
-
-I’ve also put a ton of time into a productivity plugin, something that fits the way *I* work. If I polish it enough, I might release it, but for now, it’s been a great way to push my skills.
-
-Recently, I’ve been diving deep into an Advanced Google Tag Manager course on Udemy, which has been eye-opening in ways I didn’t expect. Also, after years of putting it off, I *might* finally finish Harvard’s CS50. Ever since I first heard about it way back when, I’ve wanted to complete it, and it feels like the right time to finally make that happen.
-
-So yeah, that’s where I’m at. AI is changing how we write code, but fundamentals still matter. Web dev is weird and chaotic, but if you actually take the time to *learn*, you’ll be fine. More posts coming soon. Or not. We’ll see.
-
-Anyways welcome to my blog! 
-I hope to hear from anyone willing to take the time to read my ramblings and observations.
+Stay tuned for more content.

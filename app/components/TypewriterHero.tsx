@@ -13,7 +13,7 @@ interface TypewriterHeroProps {
 export default function TypewriterHero({
   phrases,
   staticText = "I'm ",
-  typeSpeed = 150,
+  typeSpeed = 125,
   deleteSpeed = 100,
   pauseDuration = 2000,
 }: TypewriterHeroProps) {

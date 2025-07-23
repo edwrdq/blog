@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gruvbox-bg0 text-gruvbox-fg1 antialiased`}>
+      <body className={`${inter.className} text-gruvbox-fg1 antialiased`}>
         <NeuralNetworkBackground />
         <main className="relative z-10">
           {children}

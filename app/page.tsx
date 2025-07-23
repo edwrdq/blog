@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import TypewriterHero from './components/TypewriterHero';
 import ProjectCard from './components/ProjectCard';
 import ContactSection from './components/ContactSection';
@@ -14,22 +15,22 @@ export default function HomePage() {
   ];
 
   // Example projects - replace with your actual projects
-  const projects: Project[] = [
+   const projects: Project[] = [
     {
       id: 'project-1',
-      title: 'Doral Telemetry',
-      description: 'Real‑time VEX V5 debugging & vision‑based tuning suite.',
-      image: '/images/DoralTelemetry1.png',
-      tech: ['C++ (PROS)', 'Python', 'RS‑485', 'React', 'WebSockets', 'OpenCV'],
+      title: 'HistoriaBot',
+      description: 'AI-powered Discord study bot with multiple personas and interactive tools.',
+      image: '/historiabot-1.png',
+      tech: ['Python', 'Discord.py', 'Google Gemini API', 'Requests', 'Git'],
       status: 'In Development',
       featured: true
     },
     {
-      id: 'project-2', 
-      title: 'HistoriaBot',
-      description: 'LLM‑powered Discord tutor for AP World History.',
-      image: '/api/placeholder/400/250',
-      tech: ['Node.js', 'TypeScript', 'Ollama', 'Discord.js', 'SQLite'],
+      id: 'project-2',
+      title: 'Doral Telemetry',
+      description: 'Real‑time VEX V5 debugging & vision‑based tuning suite.',
+      image: '/images/DoralTelemetry1.png',
+      tech: ['C++', 'Python', 'RS‑485', 'React', 'WebSockets', 'OpenCV'],
       status: 'In Development',
       featured: true
     }
@@ -37,6 +38,13 @@ export default function HomePage() {
 
   return (
     <>
+      <div className="text-center py-4">
+        <Link href="/blog">
+          <button className="bg-gruvbox-blue hover:bg-gruvbox-aqua text-gruvbox-bg0 font-bold py-2 px-4 rounded">
+            Go to Blog
+          </button>
+        </Link>
+      </div>
       <TypewriterHero phrases={phrases} />
       
       {/* Projects Section */}

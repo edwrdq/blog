@@ -59,13 +59,18 @@ export default function Navbar() {
       <ul className="hidden md:flex gap-6 items-center">
         {menuItems.map((item) => (
           <li key={item.name}>
-            <Link href={item.href}>
+            <Link href="/blog">
               <span
                 style={{ color: item.color }}
                 className="font-bold hover:underline focus:outline-none focus:underline"
               >
                 {item.name}
               </span>
+            </Link>
+            <Link href="/blog">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                New Post
+              </button>
             </Link>
           </li>
         ))}

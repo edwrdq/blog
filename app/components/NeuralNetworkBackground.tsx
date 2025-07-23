@@ -16,7 +16,7 @@ interface NeuralNetworkBackgroundProps {
 
 export default function NeuralNetworkBackground({ className = '' }: NeuralNetworkBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null);
   const nodesRef = useRef<Node[]>([]);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 

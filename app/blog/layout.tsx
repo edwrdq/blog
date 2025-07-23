@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ClientLayout from "./client-layout";
 
 export const metadata: Metadata = {
   title: "Blog | dotMavriQ",
@@ -10,5 +11,5 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <ClientLayout>{children}</ClientLayout>;
 }

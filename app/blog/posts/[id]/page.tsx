@@ -14,12 +14,12 @@ export async function generateMetadata({
   try {
     const post = await getPostData(params.id);
     return {
-      title: `${post.title} | dotMavriQ Blog`,
+      title: `${post.title}`,
       description: post.excerpt,
     };
   } catch {
     return {
-      title: "Blog Post Not Found | dotMavriQ",
+      title: "Blog Post Not Found",
       description: "The requested blog post could not be found.",
     };
   }
@@ -46,7 +46,7 @@ export default async function BlogPost(props: { params: { id: string } }) {
     const post = await getPostData(params.id);
 
     return (
-      <div className="flex flex-col min-h-screen p-6 md:p-8 bg-[#282828] text-[#ebdbb2]">
+      <div className="flex flex-col min-h-screen p-6 md:p-8 text-[#ebdbb2]">
         <Link
           href="/blog"
           className="mb-8 flex items-center text-[#83a598] hover:underline"

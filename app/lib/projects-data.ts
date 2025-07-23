@@ -1,15 +1,55 @@
 export const projectsData = {
-'project-1': {
+  'project-1': {
+    title: 'HistoriaBot',
+    description: 'AI-powered Discord study bot with multiple personas and interactive tools.',
+    longDescription: `HistoriaBot is a versatile Discord bot that acts as an interactive study partner. It uses the Google Gemini API to take on different personas (e.g.,
+history tutor, math expert, debate moderator) based on the channel it's in.
+
+The bot is designed to be a comprehensive study hub, offering features beyond simple Q&A. It can generate structured essay outlines, run Pomodoro study timers, and even track
+its own development by announcing new commits from its GitHub repository directly into a changelog channel.
+
+Key challenges solved:
+- Engineering distinct, effective prompts for multiple AI personas.
+- Implementing a background task system for asynchronous features like commit tracking and timers.
+- Handling Discord API limitations, such as character limits for long responses, by splitting content into multiple messages.
+- Creating an administrator-only command to manually trigger updates without restarting the bot.`,
+    images: [
+      '/historiabot-1.png'
+    ],
+    tech: ['Python', 'Discord.py', 'Google Gemini API', 'Requests', 'Git'],
+    status: 'In Development',
+    timeline: 'June 2025 - Present',
+    team: 'Solo Project',
+    github: 'https://github.com/edwrdq/historiabot',
+    live: null,
+    discord: null,
+    features: [
+      'Multi-persona AI tutor (History, Math, etc.)',
+      'Structured essay outline generator',
+      'Integrated Pomodoro study timer',
+      'Automated GitHub commit changelog',
+      'Interactive debate moderation tools',
+      'Context-aware conversational memory'
+    ],
+    challenges: [
+      'Crafting effective prompts for diverse AI behaviors',
+      'Managing asynchronous tasks within the Discord event loop',
+      'Gracefully handling API rate limits and errors',
+      'Ensuring a seamless and intuitive user experience with slash commands'
+    ]
+  },
+  'project-2': {
     title: 'Doral Telemetry',
     description: 'Real‑time VEX V5 debugging & vision‑based tuning suite.',
-    longDescription: `Doral Telemetry is a custom pipeline that streams raw robot data (via RS‑485) and high‑FPS GoPro video into a web UI for on‑the‑fly PID and MCL tuning. 
-      
-Built around a Raspberry Pi interfacing with the V5 Brain over RS‑485, it pushes JSON‑encoded telemetry to a React front‑end. The live vision overlay from the GoPro helps correlate sensor readings with robot movements.
-      
+    longDescription: `Doral Telemetry is a custom pipeline that streams raw robot data (via RS‑485) and high‑FPS GoPro video into a web UI for on‑the‑fly PID and MCL tuning.
+
+Built around a Raspberry Pi interfacing with the V5 Brain over RS‑485, it pushes JSON‑encoded telemetry to a React front‑end. The live vision overlay from the GoPro helps
+correlate sensor readings with robot movements.
+
 Key challenges solved:
-- Reliable RS‑485⇄UART bridging on the Pi  
-- Syncing 120 FPS video frames to telemetry logs  
-- Low‑latency WebSocket streaming without dropped packets  
+- Reliable RS‑485⇄UART bridging on the Pi
+- Syncing 120 FPS video frames to telemetry logs
+- Low‑latency WebSocket streaming without dropped packets
 - Intuitive chart & gauge UI for real‑time parameter tweaking`,
     images: [
       'images/doraltelemetry1.png'
@@ -34,40 +74,6 @@ Key challenges solved:
       'Maintaining <50 ms end‑to‑end latency',
       'Designing an intuitive, performance‑oriented UI',
       'Packaging the entire system into a single dashboard'
-    ]
-  },
-  'project-2': {
-    title: 'HistoriaBot',
-    description: 'LLM‑powered Discord tutor for AP World History.',
-    longDescription: `HistoriaBot sits in Discord channels and answers AP World History questions on demand, using a LLM set to behave as a history tutor.
-      
-It supports mixed‑format prompts (FRQ, SAQ, MCQ) and even moderates group debates by enforcing historical accuracy rules. The bot references users by nickname, tracks discussion threads, and logs session summaries automatically.
-      
-Key challenges solved:
-- Working with APIs for different AI solutions and finding the most economical solution
-- Dynamically switching between FRQ, SAQ, and MCQ modes  
-- Implementing rate limits & safety filters for Discord`,
-    images: [
-      '/images/historiabot-1.png'
-    ],
-    tech: ['Node.js', 'TypeScript', 'Ollama', 'Discord.js', 'SQLite'],
-    status: 'In Development',
-    timeline: '3 months',
-    team: 'Solo Project',
-    github: 'https://github.com/edwrdq/historiabot',
-    live: null,
-    discord: null,
-    features: [
-      'AP World question parsing (FRQ/SAQ/MCQ)',
-      'User‑based memory per channel',
-      'Automated session summaries',
-      'History debate moderation tools'
-    ],
-    challenges: [
-      'Fine‑tuning prompts for historical accuracy',
-      'Maintaining low‑latency responses',
-      'Handling multi‑user conversation threads',
-      'Ensuring content safety & correctness'
     ]
   },
   'project-3': {

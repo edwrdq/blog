@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, Suspense } from 'react';
+import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import BlogPostPreview from '../components/BlogPostPreview';
 import TagSelector from '../components/TagSelector';
@@ -13,7 +14,7 @@ interface BlogPageProps {
 function BlogPageContent({ initialPosts }: BlogPageProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const tagFromUrl = searchParams.get('tag');
+  const tagFromUrl = searchParams ? searchParams.get('tag') : null;
   
   const [posts] = useState<PostMetadata[]>(initialPosts);
   const [filteredPosts, setFilteredPosts] = useState<PostMetadata[]>(posts);
@@ -92,28 +93,35 @@ function BlogPageContent({ initialPosts }: BlogPageProps) {
   })();
   
   return (
-    <div className="flex flex-col min-h-screen p-6 md:p-8 bg-[#282828] text-[#ebdbb2]">
+    <div className="flex flex-col min-h-screen p-6 md:p-8 text-gruvbox-fg1">
+      <div className="text-center py-4">
+        <Link href="/">
+          <button className="bg-gruvbox-blue hover:bg-gruvbox-aqua text-gruvbox-bg0 font-bold py-2 px-4 rounded">
+            Return to Main Page
+          </button>
+        </Link>
+      </div>
       {/* Header */}
       <header className="w-full text-center mb-12 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#fabd2f]">Blog</h1>
-        <p className="text-xl text-[#a89984] max-w-3xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gruvbox-yellow">Blog</h1>
+        <p className="text-xl text-gruvbox-fg2 max-w-3xl mx-auto">
           Thoughts, insights, and tutorials on web development, programming, and technology.
         </p>
-        <div className="h-1 w-20 bg-[#d3869b] mx-auto mt-6"></div>
+        <div className="h-1 w-20 bg-gruvbox-purple mx-auto mt-6"></div>
       </header>
 
       {/* Filters Section */}
-      <section className="w-full max-w-4xl mx-auto mb-8 bg-[#32302f] p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-4 text-[#fabd2f]">Filter Posts</h2>
+      <section className="w-full max-w-4xl mx-auto mb-8 bg-gruvbox-bg1 p-6 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold mb-4 text-gruvbox-yellow">Filter Posts</h2>
 
         {/* Search */}
         <div className="mb-6">
-          <label htmlFor="search" className="block text-[#d5c4a1] mb-2">Search</label>
+          <label htmlFor="search" className="block text-gruvbox-fg2 mb-2">Search</label>
           <input
             type="text"
             id="search"
             placeholder="Search by title or content..."
-            className="w-full p-3 bg-[#3c3836] border border-[#504945] rounded-md text-[#ebdbb2] focus:outline-none focus:ring-2 focus:ring-[#fabd2f] focus:border-transparent"
+            className="w-full p-3 bg-gruvbox-bg0 border border-gruvbox-bg2 rounded-md text-gruvbox-fg1 focus:outline-none focus:ring-2 focus:ring-gruvbox-yellow focus:border-transparent"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -121,10 +129,10 @@ function BlogPageContent({ initialPosts }: BlogPageProps) {
 
         {/* Date Filter */}
         <div className="mb-6">
-          <label htmlFor="date-filter" className="block text-[#d5c4a1] mb-2">Filter by Month</label>
+          <label htmlFor="date-filter" className="block text-gruvbox-fg2 mb-2">Filter by Month</label>
           <select
             id="date-filter"
-            className="w-full p-3 bg-[#3c3836] border border-[#504945] rounded-md text-[#ebdbb2] focus:outline-none focus:ring-2 focus:ring-[#fabd2f] focus:border-transparent"
+            className="w-full p-3 bg-gruvbox-bg0 border border-gruvbox-bg2 rounded-md text-gruvbox-fg1 focus:outline-none focus:ring-2 focus:ring-gruvbox-yellow focus:border-transparent"
             value={dateFilter}
             onChange={(e) => setDateFilter(e.target.value)}
           >
@@ -153,7 +161,7 @@ function BlogPageContent({ initialPosts }: BlogPageProps) {
         {(searchTerm || selectedTags.length > 0 || dateFilter) && (
           <button
             onClick={clearFilters}
-            className="mt-4 px-4 py-2 bg-[#fb4934] text-[#282828] rounded-md hover:bg-[#cc241d] transition-colors"
+            className="mt-4 px-4 py-2 bg-gruvbox-red text-gruvbox-bg0 rounded-md hover:bg-opacity-80 transition-colors"
           >
             Clear Filters
           </button>
@@ -164,7 +172,7 @@ function BlogPageContent({ initialPosts }: BlogPageProps) {
       <main className="w-full max-w-4xl mx-auto" aria-label="Blog posts">
         {filteredPosts.length > 0 ? (
           <div className="space-y-8">
-            <p className="text-[#a89984]">
+            <p className="text-gruvbox-fg2">
               Showing {filteredPosts.length} of {posts.length} posts
             </p>
             <div className="space-y-12">
@@ -174,14 +182,14 @@ function BlogPageContent({ initialPosts }: BlogPageProps) {
             </div>
           </div>
         ) : (
-          <div className="text-center py-12 bg-[#32302f] rounded-lg shadow-lg border border-[#504945]">
-            <h2 className="text-2xl font-semibold mb-4 text-[#fabd2f]">No posts found</h2>
-            <p className="text-[#a89984] mb-4 max-w-md mx-auto">
+          <div className="text-center py-12 bg-gruvbox-bg1 rounded-lg shadow-lg border border-gruvbox-bg2">
+            <h2 className="text-2xl font-semibold mb-4 text-gruvbox-yellow">No posts found</h2>
+            <p className="text-gruvbox-fg2 mb-4 max-w-md mx-auto">
               No posts match your current filters. Try adjusting your search criteria.
             </p>
             <button
               onClick={clearFilters}
-              className="px-4 py-2 bg-[#fabd2f] text-[#282828] rounded-md hover:bg-[#d79921] transition-colors"
+              className="px-4 py-2 bg-gruvbox-yellow text-gruvbox-bg0 rounded-md hover:bg-opacity-80 transition-colors"
             >
               Clear Filters
             </button>
